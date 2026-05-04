@@ -33,10 +33,6 @@ O projeto foi criado para praticar conceitos importantes de Sistemas de Informac
 
 Tambem demonstra como transformar dados em informacao util para tomada de decisao, simulando uma ferramenta que ajuda estudantes a controlar gastos e planejar melhor o mes.
 
-## Como executar
-
-Abra o arquivo `index.html` no navegador.
-
 ## Melhorias futuras
 
 - Criar login de usuario
@@ -45,7 +41,7 @@ Abra o arquivo `index.html` no navegador.
 - Integrar com backend e banco de dados
 - Adicionar testes automatizados
 
-## Texto para LinkedIn
+
 
 Desenvolvi o FinWise Student, um painel de planejamento financeiro estudantil usando HTML, CSS e JavaScript. O projeto permite registrar receitas e despesas, acompanhar saldo, definir meta de economia, controlar limite de gastos, visualizar categorias, receber insights automaticos e exportar dados em CSV.
 

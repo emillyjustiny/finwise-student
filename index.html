@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinWise Student</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Projeto de Sistemas de Informacao</p>
+      <h1>FinWise Student</h1>
+      <p class="subtitle">Painel inteligente para organizar gastos, metas e decisoes financeiras durante a faculdade.</p>
+    </div>
+    <div class="hero-actions">
+      <button id="sampleButton" class="ghost-button" type="button">Carregar exemplo</button>
+      <button id="exportButton" class="export-button" type="button">Exportar CSV</button>
+    </div>
+  </header>
+
+  <main class="app">
+    <section class="control-strip" aria-label="Configuracoes do mes">
+      <div>
+        <label for="monthlyGoal">Meta de economia do mes</label>
+        <input id="monthlyGoal" type="number" min="0" step="10" placeholder="Ex.: 300">
+      </div>
+      <div>
+        <label for="monthlyBudget">Limite de gastos do mes</label>
+        <input id="monthlyBudget" type="number" min="0" step="10" placeholder="Ex.: 900">
+      </div>
+      <div>
+        <label for="monthFilter">Mes analisado</label>
+        <input id="monthFilter" type="month">
+      </div>
+    </section>
+
+    <section class="metrics" aria-label="Resumo financeiro">
+      <article class="metric">
+        <span>Saldo</span>
+        <strong id="balance">R$ 0,00</strong>
+      </article>
+      <article class="metric positive">
+        <span>Entradas</span>
+        <strong id="income">R$ 0,00</strong>
+      </article>
+      <article class="metric negative">
+        <span>Saidas</span>
+        <strong id="expense">R$ 0,00</strong>
+      </article>
+      <article class="metric">
+        <span>Registros</span>
+        <strong id="transactionCount">0</strong>
+      </article>
+      <article class="metric highlight">
+        <span>Economia da renda</span>
+        <strong id="savingsRate">0%</strong>
+      </article>
+      <article class="metric warning">
+        <span>Uso do orcamento</span>
+        <strong id="budgetUsage">0%</strong>
+      </article>
+    </section>
+
+    <section class="insights" aria-label="Insights financeiros">
+      <article>
+        <span>Diagnostico do mes</span>
+        <strong id="healthTitle">Sem dados suficientes</strong>
+        <p id="healthDescription">Cadastre seus primeiros lancamentos para receber uma leitura automatica.</p>
+      </article>
+      <article>
+        <span>Maior categoria de gasto</span>
+        <strong id="topCategory">-</strong>
+        <p id="topCategoryDescription">Acompanhe onde seu dinheiro esta indo.</p>
+      </article>
+      <article>
+        <span>Proxima acao sugerida</span>
+        <strong id="suggestionTitle">Defina uma meta</strong>
+        <p id="suggestionDescription">Use uma meta mensal para transformar o painel em decisao.</p>
+      </article>
+    </section>
+
+    <section class="content">
+      <aside class="panel form-panel" aria-labelledby="formTitle">
+        <h2 id="formTitle">Novo lancamento</h2>
+        <form id="transactionForm">
+          <input type="hidden" id="transactionId">
+
+          <label for="description">Descricao</label>
+          <input id="description" type="text" placeholder="Ex.: Transporte" required>
+
+          <label for="amount">Valor</label>
+          <input id="amount" type="number" min="0.01" step="0.01" placeholder="0,00" required>
+
+          <label for="type">Tipo</label>
+          <select id="type" required>
+            <option value="income">Entrada</option>
+            <option value="expense">Saida</option>
+          </select>
+
+          <label for="category">Categoria</label>
+          <select id="category" required>
+            <option>Bolsa/Estagio</option>
+            <option>Freelance</option>
+            <option>Transporte</option>
+            <option>Alimentacao</option>
+            <option>Faculdade</option>
+            <option>Internet</option>
+            <option>Lazer</option>
+            <option>Outros</option>
+          </select>
+
+          <label for="date">Data</label>
+          <input id="date" type="date" required>
+
+          <div class="actions">
+            <button class="primary" type="submit">Salvar</button>
+            <button class="secondary" id="clearButton" type="button">Limpar</button>
+          </div>
+        </form>
+      </aside>
+
+      <section class="panel dashboard" aria-labelledby="dashboardTitle">
+        <div class="toolbar">
+          <div>
+            <h2 id="dashboardTitle">Lancamentos</h2>
+            <p>Filtre por mes, busque registros e acompanhe categorias.</p>
+          </div>
+          <div class="filters">
+            <input id="searchInput" type="search" placeholder="Buscar">
+          </div>
+        </div>
+
+        <section class="analysis-grid">
+          <div class="category-panel">
+            <h3>Gastos por categoria</h3>
+            <div id="categoryChart" class="category-chart"></div>
+          </div>
+          <div class="category-panel">
+            <h3>Orcamento por categoria</h3>
+            <div id="budgetChart" class="category-chart"></div>
+          </div>
+        </section>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Descricao</th>
+                <th>Categoria</th>
+                <th>Data</th>
+                <th>Valor</th>
+                <th>Acoes</th>
+              </tr>
+            </thead>
+            <tbody id="transactionsTable"></tbody>
+          </table>
+        </div>
+        <p id="emptyState" class="empty">Nenhum lancamento encontrado.</p>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
